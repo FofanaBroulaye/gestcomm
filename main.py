@@ -3,13 +3,14 @@ from __future__ import annotations
 import sqlite3
 import hashlib
 import re
+import sys
 from datetime import date
 from pathlib import Path
 import tkinter as tk
 from tkinter import messagebox, ttk
 
 
-APP_DIR = Path(__file__).resolve().parent
+APP_DIR = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent
 DB_PATH = APP_DIR / "gestcom.db"
 
 
