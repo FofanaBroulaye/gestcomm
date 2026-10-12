@@ -13,7 +13,8 @@ from flask import Flask, flash, g, redirect, render_template, request, session, 
 
 
 APP_DIR = Path(__file__).resolve().parent
-DB_PATH = Path(os.getenv("GESTCOM_DB", APP_DIR / "gestcom.db"))
+DEFAULT_DB_PATH = Path("/tmp/gestcom.db") if os.getenv("VERCEL") else APP_DIR / "gestcom.db"
+DB_PATH = Path(os.getenv("GESTCOM_DB", DEFAULT_DB_PATH))
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("GESTCOM_SECRET", "change-this-secret-in-production")
 
